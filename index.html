@@ -820,40 +820,39 @@
     </header>
 
     <!-- Login Modal -->
-    <div id="loginModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" id="closeModal">&times;</span>
-            <h2 class="modal-title">System Login</h2>
-            <form id="loginForm">
-                <div class="form-group">
-                    <label for="userId">User ID</label>
-                    <input type="text" id="userId" placeholder="Enter your user ID" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" placeholder="Enter your password" required>
-                </div>
-                <div class="form-group">
-                    <label for="userType">Login As</label>
-                    <select id="userType" required>
-                        <option value="">Select User Type</option>
-                         <option value="admin">Pharmacist</option>
-                          <option value="admin">LabTeach</option>
-                           <option value="admin">Cashier</option>
-                        <option value="patient">Patient</option>
-                        <option value="doctor">Doctor</option>pha
-                        <option value="admin">Administrator</option>
-                    </select>
-                </div>
-             <button type="submit" class="btn btn-primary full-width">Login</button>
-                </form>
-                <div class="login-help">
-    <p>Forgot your password? <a href="#">Reset here</a></p>
-    <p>Don't have an account? <a href="#contact">Contact support</a></p>
-</div>
-
+<div id="loginModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" id="closeModal">&times;</span>
+        <h2 class="modal-title">System Login</h2>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="userId">User ID</label>
+                <input type="text" id="userId" placeholder="Enter your user ID" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+            </div>
+            <div class="form-group">
+                <label for="userType">Login As</label>
+                <select id="userType" required>
+                    <option value="">Select User Type</option>
+                    <option value="patient">Patient</option>
+                    <option value="doctor">Doctor</option>
+                    <option value="pharmacist">Pharmacist</option>
+                    <option value="cashier">Cashier</option>
+                    <option value="labtech">Lab Tech</option>
+                    <option value="admin">Administrator</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary full-width">Login</button>
+        </form>
+        <div class="login-help">
+            <p>Forgot your password? <a href="#">Reset here</a></p>
+            <p>Don't have an account? <a href="#contact">Contact support</a></p>
         </div>
     </div>
+</div>
 
     <!-- Feature Info Modal -->
     <div id="featureModal" class="modal">
@@ -1125,76 +1124,75 @@
     </footer>
 
     <script>
-        // Login System with Role-Based Redirection
-        const loginBtn = document.getElementById('loginBtn');
-        const loginModal = document.getElementById('loginModal');
-        const closeModal = document.getElementById('closeModal');
-        const loginForm = document.getElementById('loginForm');
-        const closeFeatureModal = document.getElementById('closeFeatureModal');
-        const featureModal = document.getElementById('featureModal');
+      // Login System with Role-Based Redirection
+    const loginBtn = document.getElementById('loginBtn');
+    const loginModal = document.getElementById('loginModal');
+    const closeModal = document.getElementById('closeModal');
+    const loginForm = document.getElementById('loginForm');
+    const closeFeatureModal = document.getElementById('closeFeatureModal');
+    const featureModal = document.getElementById('featureModal');
 
-        // Valid credentials for all user types
-        const patientCredentials = [
-            { id: "PAT", password: "Nas1234567", name: "Dr. Auwal Abubakar" },
-            { id: "MSS/IM/00197", password: "Man1234567", name: "Amina Bello" },
-            { id: "MSS/IM/00415", password: "Man1234567", name: "Ibrahim Musa" }
-        ];
+    // Valid credentials for all user types
+    const patientCredentials = [
+        { id: "PAT", password: "Nas1234567", name: "Dr. Auwal Abubakar" },
+        { id: "MSS/IM/00197", password: "Man1234567", name: "Amina Bello" },
+        { id: "MSS/IM/00415", password: "Man1234567", name: "Ibrahim Musa" }
+    ];
 
-         const CashierCredentials = [
-            { id: "ADM/IM/SF0058", password: "AA1234567", name: "Mr. Adewale Abdulkarim" },
-             { id: "CAH", password: "Nas1234567", name: "Dr. Auwal Abubakar" },
-            { id: "ADM/IM/SF0079", password: "AA1234567", name: "Haj. Amina Abubakar" },
-            { id: "ADM/IM/SF0045", password: "AA1234567", name: "Mal. Bala Muhammad" }
-        ];
+    const cashierCredentials = [
+        { id: "ADM/IM/SF0058", password: "AA1234567", name: "Mr. Adewale Abdulkarim" },
+        { id: "CAS", password: "Nas1234567", name: "Dr. Auwal Abubakar" },
+        { id: "ADM/IM/SF0079", password: "AA1234567", name: "Haj. Amina Abubakar" },
+        { id: "ADM/IM/SF0045", password: "AA1234567", name: "Mal. Bala Muhammad" }
+    ];
 
-         const LabTechCredentials = [
-            { id: "ADM/IM/SF0058", password: "AA1234567", name: "Mr. Adewale Abdulkarim" },
-             { id: "LAB", password: "Nas1234567", name: "Dr. Auwal Abubakar" },
-            { id: "ADM/IM/SF0079", password: "AA1234567", name: "Haj. Amina Abubakar" },
-            { id: "ADM/IM/SF0045", password: "AA1234567", name: "Mal. Bala Muhammad" }
-        ];
+    const labtechCredentials = [
+        { id: "ADM/IM/SF0058", password: "AA1234567", name: "Mr. Adewale Abdulkarim" },
+        { id: "LAB", password: "Nas1234567", name: "Dr. Auwal Abubakar" },
+        { id: "ADM/IM/SF0079", password: "AA1234567", name: "Haj. Amina Abubakar" },
+        { id: "ADM/IM/SF0045", password: "AA1234567", name: "Mal. Bala Muhammad" }
+    ];
 
-         const PharmacistCredentials = [
-            { id: "ADM/IM/SF0058", password: "AA1234567", name: "Mr. Adewale Abdulkarim" },
-             { id: "PHA", password: "Nas1234567", name: "Dr. Auwal Abubakar" },
-            { id: "ADM/IM/SF0079", password: "AA1234567", name: "Haj. Amina Abubakar" },
-            { id: "ADM/IM/SF0045", password: "AA1234567", name: "Mal. Bala Muhammad" }
-        ];
+    const pharmacistCredentials = [
+        { id: "ADM/IM/SF0058", password: "AA1234567", name: "Mr. Adewale Abdulkarim" },
+        { id: "PHA", password: "Nas1234567", name: "Dr. Auwal Abubakar" },
+        { id: "ADM/IM/SF0079", password: "AA1234567", name: "Haj. Amina Abubakar" },
+        { id: "ADM/IM/SF0045", password: "AA1234567", name: "Mal. Bala Muhammad" }
+    ];
 
+    const doctorCredentials = [
+        { id: "DOC/IM/MY03", password: "AB1234567", name: "Dr. Aisha Muhammad Bello" },
+        { id: "DOC", password: "Nas1234567", name: "Dr. Auwal Abubakar" },
+        { id: "DOC/IM/AU077", password: "AUn1234567", name: "Dr. Alhassan Umar Adamu" },
+        { id: "DOC/IM/MA0089", password: "MA1234567", name: "Dr. Maimuna Ahmad Aliyu" }
+    ];
 
-        const doctorCredentials = [
-            { id: "DOC/IM/MY03", password: "AB1234567", name: "Dr. Aisha Muhammad Bello" },
-             { id: "DOC", password: "Nas1234567", name: "Dr. Auwal Abubakar" },
-            { id: "DOC/IM/AU077", password: "AUn1234567", name: "Dr. Alhassan Umar Adamu" },
-            { id: "DOC/IM/MA0089", password: "MA1234567", name: "Dr. Maimuna Ahmad Aliyu" }
-        ];
+    const adminCredentials = [
+        { id: "ADM/IM/SF0058", password: "AA1234567", name: "Mr. Adewale Abdulkarim" },
+        { id: "ADM", password: "Nas1234567", name: "Dr. Auwal Abubakar" },
+        { id: "ADM/IM/SF0079", password: "AA1234567", name: "Haj. Amina Abubakar" },
+        { id: "ADM/IM/SF0045", password: "AA1234567", name: "Mal. Bala Muhammad" }
+    ];
 
-        const adminCredentials = [
-            { id: "ADM/IM/SF0058", password: "AA1234567", name: "Mr. Adewale Abdulkarim" },
-             { id: "ADM", password: "Nas1234567", name: "Dr. Auwal Abubakar" },
-            { id: "ADM/IM/SF0079", password: "AA1234567", name: "Haj. Amina Abubakar" },
-            { id: "ADM/IM/SF0045", password: "AA1234567", name: "Mal. Bala Muhammad" }
-        ];
-
-        // Feature data for popups
-        const featureData = {
-            records: {
-                title: "Real-time Records",
-                description: "Instant access to a complete patient history from any device, at any location.",
-                icon: '<i class="fas fa-clock"></i>',
-                sample: `Patient: John Doe (ID: MSS/IM/0034)
+    // Feature data for popups
+    const featureData = {
+        records: {
+            title: "Real-time Records",
+            description: "Instant access to a complete patient history from any device, at any location.",
+            icon: '<i class="fas fa-clock"></i>',
+            sample: `Patient: John Doe (ID: MSS/IM/0034)
 Last Visit: June 10, 2023 - Routine Checkup
 Diagnosis: Hypertension (Controlled)
 Medications: Lisinopril 10mg daily
 Allergies: Penicillin, Peanuts
 Upcoming Appointment: June 15, 2023 with Dr. Aisha
 Latest Vitals: BP 120/80, Pulse 72, Temp 98.6°F`
-            },
-            eprescribing: {
-                title: "E-Prescribing",
-                description: "Send accurate, error-free prescriptions directly to pharmacies with drug interaction alerts.",
-                icon: '<i class="fas fa-prescription-bottle-alt"></i>',
-                sample: `New Prescription for: John Doe (ID: MSS/IM/0034)
+        },
+        eprescribing: {
+            title: "E-Prescribing",
+            description: "Send accurate, error-free prescriptions directly to pharmacies with drug interaction alerts.",
+            icon: '<i class="fas fa-prescription-bottle-alt"></i>',
+            sample: `New Prescription for: John Doe (ID: MSS/IM/0034)
 Medication: Atorvastatin 20mg
 Dosage: Take 1 tablet at bedtime
 Quantity: 30 tablets
@@ -1202,12 +1200,12 @@ Refills: 3
 Pharmacy: HealthPlus Pharmacy, Wuse 2
 Interaction Check: No significant interactions found
 Status: Sent to pharmacy - Ready for pickup in 1 hour`
-            },
-            scheduling: {
-                title: "Appointment Scheduling",
-                description: "Allow patients to book, reschedule, or cancel appointments 24/7 via the portal.",
-                icon: '<i class="fas fa-calendar-check"></i>',
-                sample: `Appointment Request Confirmed
+        },
+        scheduling: {
+            title: "Appointment Scheduling",
+            description: "Allow patients to book, reschedule, or cancel appointments 24/7 via the portal.",
+            icon: '<i class="fas fa-calendar-check"></i>',
+            sample: `Appointment Request Confirmed
 Patient: Amina Bello (ID: MSS/IM/00197)
 Provider: Dr. Ibrahim Musa Lawal
 Date: June 20, 2023
@@ -1216,12 +1214,12 @@ Location: Imam Malik Clinic, Room 205
 Appointment Type: Follow-up Visit
 Estimated Wait Time: 15 minutes
 Cancel/Reschedule: Available until June 19`
-            },
-            security: {
-                title: "Secure Portal",
-                description: "Ensure HIPAA-compliant data protection using 256-bit encryption and detailed audit logs.",
-                icon: '<i class="fas fa-user-shield"></i>',
-                sample: `Security Alert - Unusual Login Attempt
+        },
+        security: {
+            title: "Secure Portal",
+            description: "Ensure HIPAA-compliant data protection using 256-bit encryption and detailed audit logs.",
+            icon: '<i class="fas fa-user-shield"></i>',
+            sample: `Security Alert - Unusual Login Attempt
 User: admin_user
 Time: June 12, 2023 03:15 AM
 Location: Unknown IP (182.45.67.12)
@@ -1231,12 +1229,12 @@ Audit Log:
 - June 12, 03:10 AM: Successful login from trusted device
 - June 11, 09:30 PM: Password changed
 - June 11, 08:45 PM: Patient record accessed (ID: MSS/IM/0034)`
-            },
-            lab: {
-                title: "Lab Integration",
-                description: "Provide seamless connectivity with major laboratories for instant result delivery.",
-                icon: '<i class="fas fa-vial"></i>',
-                sample: `Lab Results Available
+        },
+        lab: {
+            title: "Lab Integration",
+            description: "Provide seamless connectivity with major laboratories for instant result delivery.",
+            icon: '<i class="fas fa-vial"></i>',
+            sample: `Lab Results Available
 Patient: Ibrahim Musa (ID: MSS/IM/00415)
 Test: Complete Blood Count (CBC)
 Ordered By: Dr. Aisha Muhammad Bello
@@ -1247,12 +1245,12 @@ Results:
 - Hemoglobin: 14.2 g/dL (Normal)
 - Platelets: 250 (Normal)
 Status: Reviewed by physician on June 11, 2023`
-            },
-            analytics: {
-                title: "Analytics Dashboard",
-                description: "Display real-time clinical analytics and insights.",
-                icon: '<i class="fas fa-chart-line"></i>',
-                sample: `Clinic Performance - June 2023
+        },
+        analytics: {
+            title: "Analytics Dashboard",
+            description: "Display real-time clinical analytics and insights.",
+            icon: '<i class="fas fa-chart-line"></i>',
+            sample: `Clinic Performance - June 2023
 Patients Seen: 342
 Average Wait Time: 18 minutes
 Most Common Diagnosis: Hypertension (28%)
@@ -1261,141 +1259,121 @@ Lab Tests Ordered: 89
 Patient Satisfaction: 94%
 Top Performing Physician: Dr. Aisha (4.9/5 rating)
 Revenue: ₦5,420,000`
-            }
-        };
+        }
+    };
 
-        // Open modal when login button clicked
-        loginBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            loginModal.style.display = 'block';
-        });
+    // Event Listeners for Modal
+    loginBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        loginModal.style.display = 'block';
+    });
 
-        // Close modal when X clicked
-        closeModal.addEventListener('click', () => {
+    closeModal.addEventListener('click', () => {
+        loginModal.style.display = 'none';
+    });
+
+    closeFeatureModal.addEventListener('click', () => {
+        featureModal.style.display = 'none';
+    });
+
+    window.addEventListener('click', (e) => {
+        if (e.target === loginModal) {
             loginModal.style.display = 'none';
-        });
-
-        // Close feature modal
-        closeFeatureModal.addEventListener('click', () => {
+        }
+        if (e.target === featureModal) {
             featureModal.style.display = 'none';
-        });
+        }
+    });
 
-        // Close modals when clicking outside
-        window.addEventListener('click', (e) => {
-            if (e.target === loginModal) {
-                loginModal.style.display = 'none';
-            }
-            if (e.target === featureModal) {
-                featureModal.style.display = 'none';
-            }
-        });
+    // Handle Form Submission
+    loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
 
-        // Handle form submission
-        loginForm.addEventListener('submit', (e) => {
+        const userId = document.getElementById('userId').value.trim();
+        const password = document.getElementById('password').value.trim();
+        const userType = document.getElementById('userType').value;
+
+        let user, redirectUrl;
+
+        switch(userType.toLowerCase()) {
+            case 'patient':
+                user = patientCredentials.find(cred => cred.id === userId && cred.password === password);
+                redirectUrl = 'record.html';
+                break;
+            case 'doctor':
+                user = doctorCredentials.find(cred => cred.id === userId && cred.password === password);
+                redirectUrl = 'doctor-dashboard.html';
+                break;
+            case 'pharmacist':
+                user = pharmacistCredentials.find(cred => cred.id === userId && cred.password === password);
+                redirectUrl = 'Pharm.html';
+                break;
+            case 'cashier':
+                user = cashierCredentials.find(cred => cred.id === userId && cred.password === password);
+                redirectUrl = 'cash.html';
+                break;
+            case 'labtech':
+                user = labtechCredentials.find(cred => cred.id === userId && cred.password === password);
+                redirectUrl = 'lab.html';
+                break;
+            case 'admin':
+                user = adminCredentials.find(cred => cred.id === userId && cred.password === password);
+                redirectUrl = 'admin.html';
+                break;
+            default:
+                alert('Please select a valid user type.');
+                return;
+        }
+
+        if (user) {
+            window.location.href = redirectUrl;
+        } else {
+            alert('Invalid credentials. Please try again.');
+        }
+    });
+
+    // Feature card click handlers
+    document.querySelectorAll('.feature-card').forEach(card => {
+        card.addEventListener('click', function() {
+            const feature = this.getAttribute('data-feature');
+            const data = featureData[feature];
+            document.getElementById('modalIcon').innerHTML = data.icon;
+            document.getElementById('modalTitle').textContent = data.title;
+            document.getElementById('modalDescription').textContent = data.description;
+            document.getElementById('modalSample').textContent = data.sample;
+            featureModal.style.display = 'block';
+        });
+    });
+
+    // Mobile Menu Toggle
+    const mobileMenu = document.getElementById('mobileMenu');
+    const navbar = document.getElementById('navbar');
+    mobileMenu.addEventListener('click', () => {
+        navbar.classList.toggle('active');
+        mobileMenu.innerHTML = navbar.classList.contains('active') ? 
+            '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+    });
+
+    // Header Scroll Effect
+    window.addEventListener('scroll', () => {
+        const header = document.getElementById('header');
+        header.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Smooth Scrolling for Anchor Links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
             e.preventDefault();
-            const userId = document.getElementById('userId').value;
-            const password = document.getElementById('password').value;
-            const userType = document.getElementById('userType').value;
-
-            let user, redirectUrl;
-            
-            // Check credentials based on user type
-            switch(userType) {
-                case 'patient':
-                    user = patientCredentials.find(cred => 
-                        cred.id === userId && cred.password === password
-                    );
-                    redirectUrl = 'record.html';
-                    break;
-                case 'doctor':
-                    user = doctorCredentials.find(cred => 
-                        cred.id === userId && cred.password === password
-                    );
-                    redirectUrl = 'doctor-dashboard.html';
-                    break;
-                    case 'Pharmacist':
-                    user = doctorCredentials.find(cred => 
-                        cred.id === userId && cred.password === password
-                    );
-                    redirectUrl = 'Pharm.html';
-                    break;
-                    case 'Cashier':
-                    user = doctorCredentials.find(cred => 
-                        cred.id === userId && cred.password === password
-                    );
-                    redirectUrl = 'cashier.html';
-                    break;
-                    case 'LabTech':
-                    user = doctorCredentials.find(cred => 
-                        cred.id === userId && cred.password === password
-                    );
-                    redirectUrl = 'lab.html';
-                    break;
-                case 'admin':
-                    user = adminCredentials.find(cred => 
-                        cred.id === userId && cred.password === password
-                    );
-                    redirectUrl = 'admin.html';
-                    break;
-                default:
-                    alert('Please select a valid user type');
-                    return;
-            }
-
-            if (user) {
-                // Successful login - redirect to appropriate dashboard
-                window.location.href = redirectUrl;
-            } else {
-                alert('Invalid credentials. Please try again.');
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+            // Close mobile menu if open
+            if (navbar.classList.contains('active')) {
+                navbar.classList.remove('active');
+                mobileMenu.innerHTML = '<i class="fas fa-bars"></i>';
             }
         });
-
-        // Feature card click handlers
-        document.querySelectorAll('.feature-card').forEach(card => {
-            card.addEventListener('click', function() {
-                const feature = this.getAttribute('data-feature');
-                const data = featureData[feature];
-                
-                document.getElementById('modalIcon').innerHTML = data.icon;
-                document.getElementById('modalTitle').textContent = data.title;
-                document.getElementById('modalDescription').textContent = data.description;
-                document.getElementById('modalSample').textContent = data.sample;
-                
-                featureModal.style.display = 'block';
-            });
-        });
-
-        // Mobile Menu Toggle
-        const mobileMenu = document.getElementById('mobileMenu');
-        const navbar = document.getElementById('navbar');
-        
-        mobileMenu.addEventListener('click', () => {
-            navbar.classList.toggle('active');
-            mobileMenu.innerHTML = navbar.classList.contains('active') ? 
-                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-        });
-
-        // Header Scroll Effect
-        window.addEventListener('scroll', () => {
-            const header = document.getElementById('header');
-            header.classList.toggle('scrolled', window.scrollY > 50);
-        });
-
-        // Smooth Scrolling for Anchor Links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-                
-                // Close mobile menu if open
-                if (navbar.classList.contains('active')) {
-                    navbar.classList.remove('active');
-                    mobileMenu.innerHTML = '<i class="fas fa-bars"></i>';
-                }
-            });
-        });
+    });
 
         // Simple Form Submission
         const form = document.getElementById('appointmentForm');
