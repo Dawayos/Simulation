@@ -129,6 +129,19 @@
             margin-right: 10px;
         }
         
+        .nav-menu a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+/* This ensures the link has the same hover/active states as other menu items */
+.nav-menu a.nav-item:hover, 
+.nav-menu a.nav-item:active {
+    background: rgba(255, 255, 255, 0.1);
+    border-left: 4px solid var(--secondary);
+}
+
         /* Dashboard Cards */
         .dashboard-cards {
             display: grid;
@@ -726,7 +739,11 @@
                     <i class="fas fa-cog"></i>
                     <span>Settings</span>
                 </div>
-            </div>
+                
+              </div><div class="nav-item" data-section="breakroom" onclick="window.location.href='br.html'">
+                <i class="fas fa-link"></i>
+             <span>Break Room</span>
+                </div>
         </div>
         
         <!-- Dashboard Content -->
