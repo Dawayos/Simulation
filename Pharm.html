@@ -15,7 +15,6 @@
             --light: #ecf0f1;
             --gray: #95a5a6;
             --white: #ffffff;
-            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
         
         * {
@@ -203,16 +202,6 @@
             font-size: 0.9rem;
             color: var(--gray);
         }
-          .nav-button {
-    background-color: #004080;
-    color: white;
-    padding: 12px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
         
         /* Patient Section */
         .patient-section {
@@ -623,34 +612,64 @@
             border: 1px solid #ddd;
             border-radius: 5px;
         }
-      
-  .nav-button:hover {
-    background-color: #0059b3;
-  }
         
         /* Responsive */
-     @media (max-width: 768px) {
-    .container {
-        grid-template-columns: 1fr;
-    }
-    .main-content {
-        margin-top: 20px;
-    }
-}
-           .sidebar {
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            
+          .mobile-menu-toggle {
+    display: none;
     position: fixed;
-    top: 0;
-    left: -250px;
-    width: 250px;
-    height: 100%;
-    transition: left 0.3s ease;
+    top: 10px;
+    left: 10px;
     z-index: 1000;
+    background: var(--dark);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
 }
 
-.sidebar.active {
-    left: 0;
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: flex;
+    }
+    
+    .sidebar {
+        position: fixed;
+        width: 250px;
+        height: 100vh;
+        left: -250px;
+        transition: left 0.3s;
+        z-index: 999;
+    }
+    
+    .sidebar.active {
+        left: 0;
+    }
+    
+    /* Add overlay when menu is open */
+    .sidebar-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.5);
+        z-index: 998;
+        display: none;
+    }
+    
+    .sidebar-overlay.active {
+        display: block;
+    }
 }
-            
             .dashboard-cards {
                 grid-template-columns: 1fr;
             }
@@ -664,19 +683,20 @@
                 flex-direction: column;
             }
         }
-        
     </style>
 </head>
 <body>
+    <div class="mobile-menu-toggle">
+    <i class="fas fa-bars"></i>
+</div>
     <div class="container">
         <!-- Sidebar -->
         <div class="sidebar">
-            <div class="Photo/logo">
+            <div class="logo">
                 <i class="fas fa-prescription-bottle-alt"></i>
                 <h2>IMAM MALIK CLINIC</h2>
             </div>
-           
-
+            
             <div class="nav-menu">
                 <div class="nav-item active" data-section="dashboard">
                     <i class="fas fa-tachometer-alt"></i>
@@ -706,9 +726,6 @@
                     <i class="fas fa-cog"></i>
                     <span>Settings</span>
                 </div>
-                 <button onclick="window.location.href='br.html'">
-                         Go to Breaker Page
-                        </button>
             </div>
         </div>
         
@@ -1507,7 +1524,7 @@
                             <option>Daily</option>
                         </select>
                     </div>
-                       
+                    
                     <button class="btn-secondary" style="margin-top: 20px;"><i class="fas fa-sync-alt"></i> Test Connection</button>
                     <button class="btn-primary" style="margin-top: 20px;"><i class="fas fa-save"></i> Save Settings</button>
                 </div>
@@ -1516,16 +1533,23 @@
     </div>
     
     <script>
-           // Mobile Menu Toggle
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mainNav = document.getElementById('mainNav');
-    
-    mobileMenuBtn.addEventListener('click', () => {
-      mainNav.classList.toggle('active');
-      mobileMenuBtn.innerHTML = mainNav.classList.contains('active') ? 
-        '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-    });
-        
+
+        // Mobile menu toggle
+const mobileToggle = document.querySelector('.mobile-menu-toggle');
+const sidebar = document.querySelector('.sidebar');
+const overlay = document.createElement('div');
+overlay.className = 'sidebar-overlay';
+document.body.appendChild(overlay);
+
+mobileToggle.addEventListener('click', function() {
+    sidebar.classList.toggle('active');
+    overlay.classList.toggle('active');
+});
+
+overlay.addEventListener('click', function() {
+    sidebar.classList.remove('active');
+    overlay.classList.remove('active');
+});
         // Sample data for real-time simulation
         const samplePatients = [
             { id: "P-48921", name: "Johnathan M. Doe", age: 42, lastVisit: "2023-06-15", activeRx: 3, status: "Active" },
